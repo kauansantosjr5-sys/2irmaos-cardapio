@@ -1,0 +1,150 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Cardápio 2 Irmãos</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: capa com a logo, abas de categoria fixas, listas com preço e botão de pedido, barra de pedido no rodapé */
+:root{--bg:#0d0b0c;--card:#1a1618;--line:#2c2629;--fg:#f6f1ee;--mut:#a89fa2;--pink:#e6007e;--green:#8dc21f;--orange:#f58220;
+--fd:'Baloo 2','Trebuchet MS',sans-serif;--fb:'Nunito',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:400 15px/1.45 var(--fb);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 110px}
+.w{max-width:760px;margin:0 auto}
+.cover{display:block;width:100%;border-radius:14px;margin-top:16px}
+.info{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 4px;color:var(--mut);font-size:14px}
+.info b{color:var(--fg);font-weight:800}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px));display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;padding:7px 14px;border-radius:99px;background:var(--card);color:var(--fg);text-decoration:none;font-weight:800;font-size:14px;border:1px solid var(--line)}
+nav a.on{background:var(--pink);border-color:var(--pink)}
+nav a:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+section{padding-top:26px;scroll-margin-top:60px}
+h2{font:800 28px/1.1 var(--fd);margin:0 0 4px;text-wrap:balance}
+h2 span{color:var(--pink)}
+.sub{color:var(--mut);margin:0 0 14px;font-size:14px}
+.promo{display:grid;gap:14px}
+.pc{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.bdg{display:inline-block;margin:14px 14px 0;background:var(--orange);color:#1a0d00;font:800 12px var(--fb);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
+.pc .row{padding:12px 14px}
+.flav{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.fl{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.fl img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.fl p{margin:0;padding:9px 11px 11px;font-weight:800;font-size:14px;line-height:1.25}
+.cta{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#10150a;text-decoration:none;font-weight:800;padding:11px 18px;border-radius:99px;margin-top:14px}
+.grp{margin:18px 0 0;font:800 13px var(--fb);letter-spacing:.09em;text-transform:uppercase;color:var(--orange)}
+.grp small{display:block;letter-spacing:0;text-transform:none;color:var(--mut);font-weight:600;font-size:13px;margin-top:2px}
+.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .t{flex:1;min-width:0}
+.it h3{margin:0;font:700 16px/1.25 var(--fb)}
+.it p{margin:2px 0 0;color:var(--mut);font-size:13.5px}
+.pr{font:800 16px var(--fd);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pr.q{color:var(--mut);font:700 13px var(--fb)}
+.add{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:var(--pink);color:#fff;font:800 22px/1 var(--fb);cursor:pointer}
+.st{flex:none;display:flex;align-items:center;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:99px}
+.st button{width:34px;height:34px;border:0;background:none;color:var(--fg);font:800 20px/1 var(--fb);cursor:pointer;border-radius:50%}
+.st span{min-width:20px;text-align:center;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-weight:700;font-size:14px}
+.chips b{color:var(--orange);font-weight:800}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:8;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,var(--bg) 35%)}
+#bar button{display:flex;width:100%;max-width:760px;margin:0 auto;justify-content:space-between;align-items:center;border:0;border-radius:14px;background:var(--pink);color:#fff;padding:14px 18px;font:800 16px var(--fb);cursor:pointer}
+#sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center}
+#sheet .p{width:100%;max-width:760px;max-height:92%;overflow:auto;background:var(--card);border-radius:18px 18px 0 0;padding:18px max(16px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px))}
+#sheet h2{font-size:24px}
+.ln{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.ln .n{flex:1;min-width:0}
+.tot{display:flex;justify-content:space-between;font:800 20px var(--fd);margin:14px 0}
+label{display:block;font-weight:700;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--fg);padding:11px 12px;font:600 15px var(--fb)}
+.go{display:block;text-align:center;background:var(--green);color:#10150a;font-weight:800;text-decoration:none;padding:14px;border-radius:12px;margin-top:14px;font-size:16px}
+.x{float:right;background:none;border:0;color:var(--mut);font-size:15px;font-weight:800;cursor:pointer}
+.cl{background:none;border:0;color:var(--mut);text-decoration:underline;font:700 13px var(--fb);cursor:pointer;margin-top:10px}
+</style>
+<div class="w">
+<img class="cover" src="img/cover.webp" alt="Sorveteria e Lanchonete 2 Irmãos" width="360" height="233">
+<div class="info"><span><b>Rua João Seledone</b> · Bairro Brancas</span><span><b>WhatsApp</b> (86) 9 8122-8992</span></div>
+<nav id="nav"></nav>
+<main id="m"></main>
+<footer>Sorveteria e Lanchonete 2 Irmãos · Rua João Seledone, Bairro Brancas · WhatsApp (86) 9 8122-8992</footer>
+</div>
+<div id="bar" hidden><button id="open"><span id="bc">0 itens</span><span id="bt">Ver pedido</span></button></div>
+<div id="sheet" hidden></div>
+<script>
+const WA='5586981228992';
+const IMG={"abacaxi": "img/abacaxi.webp", "perola": "img/perola.webp", "morangop": "img/morangop.webp", "morango": "img/morango.webp", "flocos": "img/flocos.webp", "prestigio": "img/prestigio.webp", "ninho": "img/ninho.webp", "sonho": "img/sonho.webp", "menta": "img/menta.webp", "bemcasado": "img/bemcasado.webp", "passas": "img/passas.webp", "maracuja": "img/maracuja.webp", "castanha": "img/castanha.webp", "ny": "img/ny.webp", "med": "img/med.webp"};
+const fm=v=>'R$ '+v.toFixed(2).replace('.',',');
+// itens: [nome, descrição, preço|null]
+const S=[
+{id:'destaques',nm:'Destaques',promo:1},
+{id:'sorvetes',nm:'Sorvetes',flav:1},
+{id:'hamburgueres',nm:'Hambúrgueres',g:[[null,null,[
+['Misto quente','Pão, queijo e presunto',5],
+['X-Salada','Pão, carne, tomate, alface, queijo e presunto',10],
+['X-Frango','Pão, carne, frango, tomate, alface, queijo e presunto',11],
+['X-Bacon','Pão, tomate, carne, alface, bacon, queijo e presunto',13],
+['X-Calabresa','Pão, tomate, carne, alface, calabresa, queijo e presunto',13],
+['X-Ovo','Pão, tomate, carne, alface, ovo, queijo e presunto',13],
+['X-Peixe','Pão, filé de peixe, tomate, alface, queijo e presunto',13],
+['X-Picanha','Pão, picanha, tomate, alface, queijo e presunto',20],
+['X-Tudo','Pão, tomate, 2 carnes, alface, bacon, 2 ovos, presuntos e queijo',22]]]]},
+{id:'pasteis',nm:'Pastéis',g:[
+['Pastel de queijo, frango ou presunto','Opcionais. Também tem frango com catupiry.',[['Pequeno','',5],['Médio','',10],['Grande','',15]],'Pastel '],
+['Pastel de carne moída','',[['Pequeno','',10],['Médio','',15],['Grande','',20]],'Pastel de carne moída '],
+['Pastel de carne seca','',[['Pequeno','',12],['Médio','',18],['Grande','',22]],'Pastel de carne seca '],
+['Pastel de pizza','Calabresa, bacon, queijo, presunto, cebola e tomate',[['Pequeno','',12],['Médio','',20],['Grande','',25]],'Pastel de pizza ']]},
+{id:'arabe',nm:'Pão Árabe',g:[[null,null,[
+['Árabe Fit','Pão árabe, tomate, alface, frango e cebola',10],
+['Árabe Misto','Pão árabe, queijo, frango e presunto',12],
+['Árabe Borelli','Pão árabe, queijo, catupiry, presunto e calabresa',14],
+['Árabe Tradicional','Pão árabe, queijo, presunto, bacon e calabresa',16],
+['Árabe Tudo','Pão árabe, presunto, queijo, bacon, calabresa, batata palha, alface e tomate',19]]]]},
+{id:'porcoes',nm:'Porções',g:[[null,null,[
+['Batata P','',15],['Batata M','',30],['Batata G','',45],
+['Calabresa P','',15],['Calabresa M','',30],['Calabresa G','',45],
+['Calabresa, queijo e batata','',35],
+['Batata e contra filé','',null],['Batata e picanha','',null]]]]},
+{id:'sucos',nm:'Sucos',suco:1}
+];
+const FL=[['abacaxi','Abacaxi com leite condensado'],['perola','Pérola negra'],['morangop','Morango com pedaços'],['morango','Morango'],['flocos','Flocos'],['prestigio','Prestígio'],['ninho','Ninho trufado'],['sonho','Sonho de valsa'],['menta','Menta'],['bemcasado','Bem casado'],['passas','Passas'],['maracuja','Maracujá'],['castanha','Castanha']];
+const PROMO=[['ny','New York Burguer','Pão brioche, blend de carne, anéis de cebola, queijo cheddar, molho barbecue e bacon',17.99],['med','Mediterrâneo Burguer','Pão brioche, blend de carne, alface, tomate, queijo prato e pickles',17.99]];
+const SUCOS=[['Acerola, goiaba, maracujá, cajá, bacuri, graviola, cupuaçu, manga, caju, abacaxi e abacaxi com hortelã',5],['Uva',6],['Abacate',7],['Laranja',7],['Morango',7]];
+const SUCOLIST=[['Acerola',5],['Goiaba',5],['Maracujá',5],['Cajá',5],['Bacuri',5],['Graviola',5],['Cupuaçu',5],['Manga',5],['Caju',5],['Abacaxi',5],['Abacaxi com hortelã',5],['Uva',6],['Abacate',7],['Laranja',7],['Morango',7]];
+const cart={};const ITEMS={};let k=0;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function reg(name,price){const id='i'+(k++);ITEMS[id]={name,price};return id}
+function row(name,desc,price,full){const id=reg(full||name,price);
+return `<div class="it"><div class="t"><h3>${esc(name)}</h3>${desc?`<p>${esc(desc)}</p>`:''}</div>${price==null?'<span class="pr q">Consulte</span>':`<span class="pr">${fm(price)}</span>`}<span data-c="${id}"></span></div>`}
+let h='',nv='';
+for(const s of S){nv+=`<a href="#${s.id}" data-s="${s.id}">${s.nm}</a>`;h+=`<section id="${s.id}">`;
+if(s.promo){h+=`<h2>Destaques <span>da casa</span></h2><p class="sub">Hambúrgueres especiais em promoção.</p><div class="promo">`+PROMO.map(p=>{const id=reg(p[1],p[3]);return `<div class="pc"><div class="bdg">Promoção</div><div class="row"><div class="it" style="border:0;padding:0"><div class="t"><h3>${p[1]}</h3><p>${p[2]}</p></div><span class="pr">${fm(p[3])}</span><span data-c="${id}"></span></div></div></div>`}).join('')+'</div>'}
+else if(s.flav){h+=`<h2>Sorvetes</h2><p class="sub">${FL.length} sabores no balcão hoje. Valores no WhatsApp.</p><div class="flav">`+FL.map(f=>`<div class="fl"><img src="${IMG[f[0]]}" alt="${f[1]}" loading="lazy"><p>${f[1]}</p></div>`).join('')+`</div><a class="cta" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent('Olá! Queria saber os valores dos sorvetes.')}">Perguntar valores</a>`}
+else if(s.suco){h+=`<h2>Sucos</h2><p class="sub">Todos feitos na hora.</p>`+SUCOLIST.map(x=>row(x[0],'',x[1],'Suco de '+x[0].toLowerCase())).join('')}
+else{h+=`<h2>${s.nm}</h2>`;for(const g of s.g){
+if(g[0]){h+=`<div class="grp">${g[0]}${g[1]?`<small>${g[1]}</small>`:''}</div>`;h+=g[2].map(x=>row(x[0],x[1],x[2],g[3]+x[0].toLowerCase())).join('')}
+else h+=g[2].map(x=>row(x[0],x[1],x[2])).join('')}}
+h+='</section>'}
+document.getElementById('m').innerHTML=h;document.getElementById('nav').innerHTML=nv;
+function paint(){document.querySelectorAll('[data-c]').forEach(e=>{const id=e.dataset.c,q=cart[id]||0;
+e.outerHTML=q?`<span class="st" data-c="${id}"><button data-d="-1" aria-label="Remover um">−</button><span>${q}</span><button data-d="1" aria-label="Adicionar um">+</button></span>`:`<button class="add" data-c="${id}" data-d="1" aria-label="Adicionar ao pedido">+</button>`});
+const ids=Object.keys(cart).filter(i=>cart[i]>0);const n=ids.reduce((a,i)=>a+cart[i],0);const t=ids.reduce((a,i)=>a+cart[i]*(ITEMS[i].price||0),0);
+document.getElementById('bar').hidden=!n;document.getElementById('bc').textContent=n+(n>1?' itens':' item');document.getElementById('bt').textContent='Ver pedido · '+fm(t)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(!b)return;const id=b.closest('[data-c]').dataset.c;cart[id]=Math.max(0,(cart[id]||0)+ +b.dataset.d);paint();if(!document.getElementById('sheet').hidden)sheet()});
+function sheet(keep){const sh=document.getElementById('sheet');const ids=Object.keys(cart).filter(i=>cart[i]>0);
+const nm=(document.getElementById('nome')||{}).value||'',ob=(document.getElementById('obs')||{}).value||'';
+if(!ids.length){sh.hidden=true;return}
+const t=ids.reduce((a,i)=>a+cart[i]*(ITEMS[i].price||0),0),pend=ids.some(i=>ITEMS[i].price==null);
+const lines=ids.map(i=>`${cart[i]}x ${ITEMS[i].name}`+(ITEMS[i].price!=null?` - ${fm(cart[i]*ITEMS[i].price)}`:' - valor a consultar'));
+let msg='Olá! Quero fazer um pedido:\n'+lines.join('\n')+'\nTotal: '+fm(t)+(pend?' (mais itens a consultar)':'');
+if(nm)msg+='\nNome: '+nm;if(ob)msg+='\nObservação: '+ob;
+sh.innerHTML=`<div class="p"><button class="x" id="cx">Fechar</button><h2>Seu pedido</h2>`+ids.map(i=>`<div class="ln"><div class="n"><b>${esc(ITEMS[i].name)}</b></div><span class="st" data-c="${i}"><button data-d="-1" aria-label="Remover um">−</button><span>${cart[i]}</span><button data-d="1" aria-label="Adicionar um">+</button></span><span class="pr" style="min-width:74px;text-align:right">${ITEMS[i].price!=null?fm(cart[i]*ITEMS[i].price):'Consulte'}</span></div>`).join('')+
+`<div class="tot"><span>Total</span><span>${fm(t)}</span></div>${pend?'<p class="sub">Itens sem valor serão confirmados no WhatsApp.</p>':''}<label for="nome">Seu nome</label><input id="nome" value="${esc(nm)}"><label for="obs">Observação (sem cebola, endereço de entrega...)</label><textarea id="obs" rows="2">${esc(ob)}</textarea><a class="go" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}">Enviar pedido no WhatsApp</a><button class="cl" id="clr">Limpar pedido</button></div>`;
+sh.hidden=false;
+const go=sh.querySelector('.go');
+const upd=()=>{let m='Olá! Quero fazer um pedido:\n'+lines.join('\n')+'\nTotal: '+fm(t)+(pend?' (mais itens a consultar)':'');const a=document.getElementById('nome').value,b=document.getElementById('obs').value;if(a)m+='\nNome: '+a;if(b)m+='\nObservação: '+b;go.href='https://wa.me/'+WA+'?text='+encodeURIComponent(m)};
+document.getElementById('nome').oninput=document.getElementById('obs').oninput=upd}
+document.getElementById('open').onclick=()=>sheet();
+document.getElementById('sheet').addEventListener('click',e=>{if(e.target.id==='sheet'||e.target.id==='cx')e.currentTarget.hidden=true;if(e.target.id==='clr'){for(const k in cart)delete cart[k];e.currentTarget.hidden=true;paint()}});
+const secs=[...document.querySelectorAll('section')],links=[...document.querySelectorAll('nav a')];
+addEventListener('scroll',()=>{let c=secs[0].id;for(const s of secs)if(s.getBoundingClientRect().top<110)c=s.id;links.forEach(a=>a.classList.toggle('on',a.dataset.s===c))},{passive:true});
+links[0].classList.add('on');paint();
+</script>
+</html>
